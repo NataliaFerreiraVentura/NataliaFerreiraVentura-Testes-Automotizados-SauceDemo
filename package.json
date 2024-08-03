@@ -1,0 +1,22 @@
+{
+  "name": "teste-tecnico-vox-tecnologia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.2",
+    "@cucumber/cucumber": "^10.8.0",
+    "cypress": "^13.13.2",
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "cypress/e2e/step_definitions"
+  }
+}
