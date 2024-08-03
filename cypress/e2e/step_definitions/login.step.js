@@ -15,7 +15,6 @@ When('o usuário clica no botão {string}', (buttonText) => {
 
 // #region Login com sucesso
 
-// Realiza o login na aplicação com credenciais validas
 When('o usuário insere o nome de usuário e a senha', () => {
   const username = 'standard_user'
   const password = 'secret_sauce'
@@ -24,7 +23,6 @@ When('o usuário insere o nome de usuário e a senha', () => {
   cy.get('#password').type(password)
 })
 
-//Verifica se o usuário foi redirecionado para a página inicial
 Then('o usuário deve ser redirecionado para a página inicial', () => {
   cy.url().should('include', '/v1/')
 }) 
