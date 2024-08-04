@@ -1,15 +1,11 @@
 import LoginElements from './LoginElements'
 
 class LoginPage {
-  // Define variáveis para username e password válidos
   validUsername = 'standard_user'
   validPassword = 'secret_sauce'
-  
-  // Define variáveis para username e password inválidos
   invalidUsername = 'invalid_user'
   invalidPassword = 'invalid_password'
 
-  // Visita a página de login
   visit() {
     cy.visit('https://www.saucedemo.com/v1/')
   }
@@ -28,7 +24,6 @@ class LoginPage {
     cy.get(LoginElements.loginButton).click();
   }
  
-
   // Faz login com credenciais inválidas
   loginWithInvalidCredentials() {
     this.fillUsername(this.invalidUsername)
