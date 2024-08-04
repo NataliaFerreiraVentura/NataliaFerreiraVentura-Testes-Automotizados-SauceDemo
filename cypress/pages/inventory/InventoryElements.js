@@ -1,5 +1,5 @@
 const InventoryElements = {
-    inventoryList: '.inventory_list',
+    productList: '.inventory_list',
     productName: '.inventory_item_name',
     productDescription: '.inventory_item_desc',
     productPrice: '.inventory_item_price',

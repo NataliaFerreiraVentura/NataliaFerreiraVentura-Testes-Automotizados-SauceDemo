@@ -1,49 +1,49 @@
-import LoginElements from './LoginElements'
+import LoginElements from './LoginElements';
+import {BASE_URL,VALID_USERNAME,VALID_PASSWORD,INVALID_USERNAME,INVALID_PASSWORD,WAIT_TIME,} from '../../support/constants';
 
 class LoginPage {
-  validUsername = 'standard_user'
-  validPassword = 'secret_sauce'
-  invalidUsername = 'invalid_user'
-  invalidPassword = 'invalid_password'
 
+  // #region Navegação
   visit() {
-    cy.visit('https://www.saucedemo.com/v1/')
+    cy.visit(BASE_URL);
+  }
+  // #endregion
+
+  // #region Ações de Login
+  fillUsername(username = VALID_USERNAME) {
+    cy.get(LoginElements.username).type(username);
   }
 
-  // Preenche o campo de nome de usuário valido
-  fillUsername(username = this.validUsername) {
-    cy.get(LoginElements.username).type(username)
-  }
-
-  // Preenche o campo de senha valido
-  fillPassword(password = this.validPassword) {
-    cy.get(LoginElements.password).type(password)
+  fillPassword(password = VALID_PASSWORD) {
+    cy.get(LoginElements.password).type(password);
   }
 
   clickLogin() {
     cy.get(LoginElements.loginButton).click();
   }
- 
-  // Faz login com credenciais inválidas
+
   loginWithInvalidCredentials() {
-    this.fillUsername(this.invalidUsername)
-    this.fillPassword(this.invalidPassword)
-    cy.wait(5500) 
+    this.fillUsername(INVALID_USERNAME);
+    this.fillPassword(INVALID_PASSWORD);
+    cy.wait(WAIT_TIME); 
   }
 
+  loginWithSuccess(username = VALID_USERNAME, password = VALID_PASSWORD) {
+    this.visit()
+    this.fillUsername(username)
+    this.fillPassword(password)
+    this.clickLogin()
+    cy.wait(WAIT_TIME)
+  }
+  // #endregion
+
+  // #region Verificações
   verifyErrorMessage(errorMessage) {
-    
     cy.get(LoginElements.errorMessage)
       .should('be.visible')
-      .should('contain.text', errorMessage)
+      .should('contain.text', errorMessage);
   }
-
-  static loginWithSuccess() {
-    this.fillUsername(validUsername);
-    this.fillPassword(validPassword);
-    this.clickLogin();
-  }
-
+  // #endregion
 }
 
-export default new LoginPage()
+export default new LoginPage();

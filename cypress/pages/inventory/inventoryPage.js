@@ -1,53 +1,77 @@
-import InventoryElements from './InventoryElements'
+import InventoryElements from './InventoryElements';
 
 class InventoryPage {
+
+  // #region Navegação
   verifyPage() {
-    cy.url().should('include', '/inventory.html')
-    cy.screenshot('acesso a pagina de inventário')
+    cy.url().should('include', '/inventory.html');
   }
-  verifylistProductVisibility(){
-    cy.get(InventoryElements.inventoryList).should('be.visible')
+  // #endregion
+
+  // #region Verificação de Produtos
+  verifyProductListVisible() {
+    cy.get(InventoryElements.productList).should('be.visible');
   }
 
-  verifyProductVisibility(productName) {
-    cy.get(InventoryElements.productName).contains(productName).should('be.visible')
+  verifyProductPresence(productName) {
+    cy.get(InventoryElements.productName)
+      .contains(productName)
+      .should('be.visible');
   }
 
   verifyProductDescription(productName) {
-    cy.get(InventoryElements.productName).contains(productName).parents('.inventory_item').within(() => {
-      cy.get(InventoryElements.productDescription).should('be.visible')
-    })
+    cy.get(InventoryElements.productName)
+      .contains(productName)
+      .parents('.inventory_item')
+      .find(InventoryElements.productDescription)
+      .should('be.visible');
+  }
+  // #endregion
+
+  // #region Filtros e Ordenação
+  applySortFilter(sortOption) {
+    cy.get(InventoryElements.sortContainer).select(sortOption);
   }
 
-  applyFilter(filterOption) {
-    cy.get(InventoryElements.sortContainer).select(filterOption)
+  verifyProductsInPriceOrder() {
+    let previousPrice = 0;
+
+    cy.get(InventoryElements.productPrice).then($prices => {
+      cy.wrap($prices).each($el => {
+        const priceText = $el.text().replace('$', '');
+        const price = parseFloat(priceText);
+
+        expect(price).to.be.at.least(previousPrice);
+        previousPrice = price;
+      });
+    });
   }
 
-  verifyProductPriceOrderAscending() {
-    let previousPrice = 0
-    cy.get(InventoryElements.productPrice).each(($el) => {
-      const priceText = $el.text().replace('$', '')
-      const price = parseFloat(priceText)
-      expect(price).to.be.at.least(previousPrice)
-      previousPrice = price
-    })
-  }
+  verifyProductsInAlphabeticalOrder() {
+    const productNames = [];
 
-  verifyProductNameOrderDescending() {
-    const productNames = []
-    cy.get(InventoryElements.productName).each(($el) => {
-      productNames.push($el.text())
-    }).then(() => {
-      const sortedProductNames = [...productNames].sort().reverse()
-      expect(productNames).to.deep.equal(sortedProductNames)
-    })
-  }
+    cy.get(InventoryElements.productName).then($elements => {
+      $elements.each((index, element) => {
+        productNames.push(element.innerText);
+      });
 
-  addToCart(productName) {
-    cy.get(InventoryElements.productName).contains(productName).parents('.inventory_item').within(() => {
-      cy.get(InventoryElements.addToCartButton).click()
-    })
+      const sortedProductNames = [...productNames].sort().reverse();
+      expect(productNames).to.deep.equal(sortedProductNames);
+    });
   }
+  // #endregion
+
+  // #region Ações
+  addItemToCart(productName) {
+    cy.contains(productName)
+      .parents('.inventory_item')
+      .find(InventoryElements.addToCartButton)
+      .should('have.text', 'ADD TO CART')
+      .click()
+  }
+  // #endregion
+
+  
 }
 
-export default new InventoryPage()
+export default new InventoryPage();

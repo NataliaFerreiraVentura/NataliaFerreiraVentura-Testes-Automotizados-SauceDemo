@@ -6,3 +6,4 @@ Feature: Remover produto do Carrinho
     And navega para o carrinho
     And remove o produto específico do carrinho
     Then o produto removido não deve estar mais no carrinho
+
