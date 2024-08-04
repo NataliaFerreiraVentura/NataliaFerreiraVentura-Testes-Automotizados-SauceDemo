@@ -1,13 +1,14 @@
 Feature: Login
 
-  Scenario: Usuário faz login com sucesso
-    Given o usuário está na página de login
-    When o usuário insere o nome de usuário e a senha
-    And o usuário clica no botão "LOGIN"
-    Then o usuário deve ser redirecionado para a página inicial
+  Background: 
+    Given que o usuário navega para a página de login
 
-  Scenario: Usuário tenta fazer login com credenciais inválidas
-    Given o usuário está na página de login
-    When o usuário insere credenciais inválidas
-    And o usuário clica no botão "LOGIN"
-    Then o usuário deve ver uma mensagem de erro "Epic sadface: Username and password do not match any user in this service"
+  Scenario: Login com sucesso
+    When o nome de usuário e a senha válidos são inseridos
+    And clica no botão "LOGIN"
+    Then deve ser redirecionado para a página inicial
+
+  Scenario: Login com dados inválidos
+    When credenciais inválidas são inseridas
+    And clica no botão "LOGIN"
+    Then uma mensagem de erro "Epic sadface: Username and password do not match any user in this service" deve ser exibida

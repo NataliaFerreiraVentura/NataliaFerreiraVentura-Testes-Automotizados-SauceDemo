@@ -7,6 +7,7 @@ Given('o usuário está logado na aplicação', () => {
   cy.visit('https://www.saucedemo.com/v1/')
   cy.get('#user-name').type('standard_user')
   cy.get('#password').type('secret_sauce')
+  cy.wait(5000)
   cy.get('#login-button').click()
 })
 
