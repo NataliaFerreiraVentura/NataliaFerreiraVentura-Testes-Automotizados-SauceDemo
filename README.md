@@ -19,7 +19,7 @@ O objetivo deste conjunto de testes automatizados é validar a funcionalidade e 
 
 5. **Finalizar Compra:**
    - Testar o fluxo completo de finalização de compra, garantindo que o processo de checkout seja concluído com sucesso.
-
+     
 ## 1. Pré-Requisitos
 
 Antes de começar, certifique-se de que você possui os seguintes itens instalados:
@@ -68,6 +68,7 @@ npm install cypress --save-dev
 npm install cypress-cucumber-preprocessor --save-dev
 
 ```
+
 ## 4. Execução dos Testes
    
 Para executar os testes, utilize um dos seguintes comandos, conforme a necessidade:
@@ -95,4 +96,3 @@ npx cypress run
 - **cypress-cucumber-preprocessor:** [Documentação](https://github.com/badeball/cypress-cucumber-preprocessor)
 - **Node.js:** [Documentação](https://nodejs.org/en/docs/)
 - **npm:** [Documentação](https://docs.npmjs.com/)
-
