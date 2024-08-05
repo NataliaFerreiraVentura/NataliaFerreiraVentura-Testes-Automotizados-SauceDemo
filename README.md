@@ -24,7 +24,7 @@ O objetivo deste conjunto de testes automatizados é validar a funcionalidade e 
 
 Antes de começar, certifique-se de que você possui os seguintes itens instalados:
 
-- **IDE de Desenvolvimento:**  
+- **IDE de Desenvolvimento sugerido:**  
   [Visual Studio Code](https://code.visualstudio.com/)
 
 - **Node.js:**  
