@@ -91,7 +91,7 @@ npx cypress run
 
 ## 5. Tecnologias Utilizadas
 
-- **Cypress:** [Documentação](https://www.cypress.io/docs/)
+- **Cypress:** [Documentação](https://docs.cypress.io/guides/overview/why-cypress)
 - **Cucumber:** [Documentação](https://cucumber.io/docs/guides/)
 - **cypress-cucumber-preprocessor:** [Documentação](https://github.com/badeball/cypress-cucumber-preprocessor)
 - **Node.js:** [Documentação](https://nodejs.org/en/docs/)
