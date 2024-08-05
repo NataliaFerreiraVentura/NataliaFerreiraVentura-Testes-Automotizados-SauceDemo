@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-O objetivo deste conjunto de testes automatizados é validar a funcionalidade e a integridade dos principais fluxos de usuário em nosso sistema de e-commerce. Os testes cobrem os seguintes casos de uso:
+O objetivo deste conjunto de testes automatizados é validar a funcionalidade e a integridade dos principais fluxos de usuário no sistema de e-commerce público "SauceDemo". Os testes cobrem os seguintes casos de uso:
 
 1. **Login:**
    - **Usuário Válido:** Verificar se um usuário consegue fazer login com credenciais válidas.
