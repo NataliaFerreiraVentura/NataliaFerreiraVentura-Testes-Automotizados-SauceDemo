@@ -1,49 +1,33 @@
-import LoginElements from './LoginElements';
-import {BASE_URL,VALID_USERNAME,VALID_PASSWORD,INVALID_USERNAME,INVALID_PASSWORD,WAIT_TIME,} from '../../support/constants';
+import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
+import LoginPage from '../../pages/login/loginPage';
+import InventoryPage from '../../pages/inventory/InventoryPage';
 
-class LoginPage {
+// #region Configuração Inicial
+Given('que o usuário navega para a página de login', () => {
+  LoginPage.visit(); // Acessa a página de login.
+});
+// #endregion
 
-  // #region Navegação
-  visit() {
-    cy.visit(BASE_URL);
-  }
-  // #endregion
+// #region Ações de Login
+When('o nome de usuário e a senha válidos são inseridos', () => {
+  LoginPage.fillUsername()
+  LoginPage.fillPassword()
+})
 
-  // #region Ações de Login
-  fillUsername(username = VALID_USERNAME) {
-    cy.get(LoginElements.username).type(username);
-  }
+When('credenciais inválidas são inseridas', () => {
+  LoginPage.loginWithInvalidCredentials(); 
+})
 
-  fillPassword(password = VALID_PASSWORD) {
-    cy.get(LoginElements.password).type(password);
-  }
+When('clica no botão {string}', (buttonText) => {
+  LoginPage.clickLogin(buttonText) 
+})
+// #endregion
 
-  clickLogin() {
-    cy.get(LoginElements.loginButton).click();
-  }
+// #region Resultados Esperados
+Then('deve ser redirecionado para a página inicial', () => {
+  InventoryPage.verifyPage();})
 
-  loginWithInvalidCredentials() {
-    this.fillUsername(INVALID_USERNAME);
-    this.fillPassword(INVALID_PASSWORD);
-    cy.wait(WAIT_TIME); 
-  }
-
-  loginWithSuccess(username = VALID_USERNAME, password = VALID_PASSWORD) {
-    this.visit()
-    this.fillUsername(username)
-    this.fillPassword(password)
-    this.clickLogin()
-    cy.wait(WAIT_TIME)
-  }
-  // #endregion
-
-  // #region Verificações
-  verifyErrorMessage(errorMessage) {
-    cy.get(LoginElements.errorMessage)
-      .should('be.visible')
-      .should('contain.text', errorMessage);
-  }
-  // #endregion
-}
-
-export default new LoginPage();
+Then('uma mensagem de erro {string} deve ser exibida', (errorMessage) => {
+  LoginPage.verifyErrorMessage(errorMessage); 
+});
+// #endregion

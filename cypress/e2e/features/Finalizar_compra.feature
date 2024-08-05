@@ -1,12 +1,25 @@
-Feature: Finalizar Compra
+Feature: Finalizar compra
 
-  Scenario: Finalizar a compra com sucesso
+  Background:
     Given o usuário está logado na aplicação
-    When adiciona produtos ao carrinho
-    And navega para o carrinho
-    And prossegue para o checkout
-    And preenche as informações de pagamento
-    And clica no botão em continuar
-    Then as informações da compra devem ser exibidas
-    And finaliza a compra
-    And a mensagem de sucesso deve ser exibida
+
+  Scenario: Finalizar a compra com um produto
+    When o usuário adiciona um produto ao carrinho
+    And o usuário navega para o carrinho
+    And o usuário prossegue para o checkout
+    And o usuário preenche as informações de pagamento
+    And o usuário clica no botão "Continuar"
+    Then as informações da compra devem ser exibidas corretamente
+    And a compra deve ser finalizada com sucesso
+    And uma mensagem de sucesso deve ser exibida
+  
+  Scenario: Finalizar a compra com dois produtos
+    When o usuário adiciona o Produto A ao carrinho
+    And o usuário adiciona o Produto B ao carrinho
+    And o usuário navega para o carrinho
+    And o usuário prossegue para o checkout
+    And o usuário preenche as informações de pagamento
+    And o usuário clica no botão "Continuar"
+    Then as informações da compra devem ser exibidas corretamente
+    And a compra deve ser finalizada com sucesso
+    And uma mensagem de sucesso deve ser exibida
