@@ -26,7 +26,7 @@ When('o nome de usuário e a senha válidos são inseridos', () => {
 When('credenciais inválidas são inseridas', () => {
   LoginPage.loginWithInvalidCredentials()
 });
-
+  
 /**
  * Clica no botão de login com base no texto fornecido.
  * @param {string} buttonText - Texto do botão a ser clicado.

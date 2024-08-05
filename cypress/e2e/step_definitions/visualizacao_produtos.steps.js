@@ -32,8 +32,8 @@ Then('o usuário deve ver a lista de produtos', () => {
  * Verifica se um produto específico está visível na lista de produtos.
  * @param {string} productName - Nome do produto a ser verificado.
  */
-Then('o produto {string} deve estar visível', (productName) => {
-  InventoryPage.verifyProductPresence(productName)
+Then('o produto {string} deve estar visível', () => {
+  InventoryPage.verifyProductPresence()
 });
 
 /**

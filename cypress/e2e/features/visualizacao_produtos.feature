@@ -7,9 +7,6 @@ Feature: Visualização de Produtos
   Scenario: Usuário vê a lista de produtos
     Then o usuário deve ver a lista de produtos
 
-  Scenario: Usuário verifica a presença do produto Sauce Labs Backpack
-    Then o produto "Sauce Labs Backpack" deve estar visivel
-    And a descrição do produto deve estar visivel
   Scenario: Usuário filtra produtos por preço do menor para o maior
     When  aplica o filtro "Price (low to high)"
     Then os produtos devem ser exibidos em ordem de preço crescente

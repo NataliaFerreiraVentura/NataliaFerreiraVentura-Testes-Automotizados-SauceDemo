@@ -1,33 +1,57 @@
-import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
-import LoginPage from '../../pages/login/loginPage';
-import InventoryPage from '../../pages/inventory/InventoryPage';
+import LoginElements from './LoginElements';
+import {BASE_URL,VALID_USERNAME,VALID_PASSWORD,INVALID_USERNAME,INVALID_PASSWORD} from '../../support/constants';
 
-// #region Configuração Inicial
-Given('que o usuário navega para a página de login', () => {
-  LoginPage.visit(); // Acessa a página de login.
-});
-// #endregion
+class LoginPage {
+  // #region Métodos de Navegação
+  // Método para acessar a página de login
+  visit() {
+    cy.visit(BASE_URL + 'index.html'); // Usa BASE_URL para acessar a URL
+  }
+  // #endregion
 
-// #region Ações de Login
-When('o nome de usuário e a senha válidos são inseridos', () => {
-  LoginPage.fillUsername()
-  LoginPage.fillPassword()
-})
+  // #region Métodos de Preenchimento de Formulário
+  // Método para preencher o campo de nome de usuário
+  fillUsername(username = VALID_USERNAME) {
+    cy.get(LoginElements.username).type(username);
+  }
 
-When('credenciais inválidas são inseridas', () => {
-  LoginPage.loginWithInvalidCredentials(); 
-})
+  // Método para preencher o campo de senha
+  fillPassword(password = VALID_PASSWORD) {
+    cy.get(LoginElements.password).type(password);
+  }
+  // #endregion
 
-When('clica no botão {string}', (buttonText) => {
-  LoginPage.clickLogin(buttonText) 
-})
-// #endregion
+  // #region Métodos de Login
+  // Método para fazer login com credenciais válidas
+  loginWithSuccess(username = VALID_USERNAME, password = VALID_PASSWORD) {
+    this.visit();
+    this.fillUsername(username);
+    this.fillPassword(password);
+    cy.get(LoginElements.loginButton).click();
+  }
 
-// #region Resultados Esperados
-Then('deve ser redirecionado para a página inicial', () => {
-  InventoryPage.verifyPage();})
+  // Método para fazer login com credenciais inválidas
+  loginWithInvalidCredentials() {
+    this.visit();
+    this.fillUsername(INVALID_USERNAME);
+    this.fillPassword(INVALID_PASSWORD);
+    cy.get(LoginElements.loginButton).click();
+  }
+  // #endregion
 
-Then('uma mensagem de erro {string} deve ser exibida', (errorMessage) => {
-  LoginPage.verifyErrorMessage(errorMessage); 
-});
-// #endregion
+  // #region Métodos de Ação
+  // Método para clicar no botão baseado no texto
+  clickLogin(buttonText) {
+    cy.contains(buttonText).click();
+  }
+  // #endregion
+
+  // #region Métodos de Verificação
+  // Método para verificar a mensagem de erro
+  verifyErrorMessage(errorMessage) {
+    cy.get(LoginElements.errorMessage).should('contain.text', errorMessage);
+  }
+  // #endregion
+}
+
+export default new LoginPage();
