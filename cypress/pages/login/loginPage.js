@@ -4,8 +4,8 @@ import {BASE_URL,VALID_USERNAME,VALID_PASSWORD,INVALID_USERNAME,INVALID_PASSWORD
 class LoginPage {
   // #region Métodos de Navegação
   // Método para acessar a página de login
-  visit() {
-    cy.visit(BASE_URL + 'index.html'); // Usa BASE_URL para acessar a URL
+  visitPage() {
+    cy.visit(BASE_URL); // Usa BASE_URL para acessar a URL
   }
   // #endregion
 
