@@ -1,5 +1,5 @@
 // URLs
-export const BASE_URL = 'https://www.saucedemo.com/v1/';
+export const BASE_URL = 'https://www.saucedemo.com/v1/index.html';
 
 // Credenciais
 export const VALID_USERNAME = 'standard_user';

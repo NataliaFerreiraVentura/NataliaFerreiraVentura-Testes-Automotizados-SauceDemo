@@ -2,7 +2,7 @@
   "name": "teste-tecnico",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "cypress.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,13 +10,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^13.13.2"
-  },
-  "devDependencies": {
-    "cypress-cucumber-preprocessor": "^4.3.1"
+    "@cucumber/gherkin": "^28.0.0",
+    "core-js": "^3.38.0",
+    "cypress": "^13.13.2",
+    "reflect-metadata": "^0.2.2"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true,
+    "nonGlobalStepDefinitions": false,
     "stepDefinitions": "cypress/e2e/step_definitions"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-class-properties": "^7.24.7",
+    "@babel/plugin-transform-object-rest-spread": "^7.24.7",
+    "@cucumber/cucumber": "^10.8.0",
+    "cypress-cucumber-preprocessor": "^4.3.1"
   }
 }

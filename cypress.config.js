@@ -7,6 +7,6 @@ module.exports = defineConfig({
       on('file:preprocessor', cucumber());
       return config;
     },
-    specPattern: "cypress/e2e/features/*.feature",
+    specPattern: "cypress/e2e/step_definitions/*.feature",
   },
 });
