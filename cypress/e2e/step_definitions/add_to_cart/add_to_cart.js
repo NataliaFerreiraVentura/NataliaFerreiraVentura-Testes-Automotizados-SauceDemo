@@ -17,12 +17,13 @@ import {PRODUTO1,PRODUTO2} from '../../../support/constants';
     });
     
     When('adiciono dois produtos ao carrinho', () => {
-    InventoryPage.addItemToCart(PRODUTO1)
-    InventoryPage.addItemToCart(PRODUTO2)
+        InventoryPage.addItemToCart(PRODUTO1)
+        InventoryPage.addItemToCart(PRODUTO2)
     })
     
     When('vou para a página de carrinho', () => {
     InventoryPage.goToCart();
+    CartPage.verifyCartItemDetails()
     })
 // #endregion
 

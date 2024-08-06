@@ -34,6 +34,7 @@ import {PRODUTO1,PRODUTO2} from '../../../support/constants'
     
     When('navego para o carrinho', () => {
         InventoryPage.goToCart()
+        CartPage.verifyCartItemDetails()
     })
 // #endregion
 

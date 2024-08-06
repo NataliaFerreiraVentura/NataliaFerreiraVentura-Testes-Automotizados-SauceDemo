@@ -23,6 +23,7 @@ When('adiciono dois produtos específicos ao carrinho', () => {
   
 When('navego para o carrinho', () => {
     InventoryPage.goToCart()
+    CartPage.verifyCartItemDetails()
 })
 
 When('removo o produto  do carrinho', () => {

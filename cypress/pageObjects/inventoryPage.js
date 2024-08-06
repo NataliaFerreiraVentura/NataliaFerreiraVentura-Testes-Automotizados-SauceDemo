@@ -7,16 +7,27 @@ applySortFilter(sortOption) {
 
 verifyProductsInPriceOrder() {
   cy.get('.inventory_item_price').then($prices => {
-    const prices = [...$prices].map(price => parseFloat(price.innerText.replace('$', '')));
+    // Extrai o texto de cada preço, remove o símbolo '$' e converte para número
+    const prices = [...$prices].map(price => parseFloat(price.innerText.replace('$', '')))
+
+     // Ordena os preços em ordem crescente
     const sortedPrices = [...prices].sort((a, b) => a - b);
+
+    // Verifica se o array original de preços está ordenado corretamente
+
     expect(prices).to.deep.equal(sortedPrices);
 })
 }
 
 verifyProductsInAlphabeticalOrder(order) {
   cy.get('.inventory_item_name').then($names => {
-    const names = [...$names].map(name => name.innerText);
+    // Extrai o texto de cada nome de produto
+    const names = [...$names].map(name => name.innerText); 
+
+    // Ordena os nomes em ordem alfabética com base no parâmetro 'order
     const sortedNames = order === 'asc' ? [...names].sort() : [...names].sort().reverse();
+
+    // Verifica se o array original de nomes está ordenado corretamente
     expect(names).to.deep.equal(sortedNames);
   });
 }
@@ -25,10 +36,6 @@ verifyProductsInAlphabeticalOrder(order) {
 // #region Métodos de Verificação de Lista
 verifyProductListVisible() {
   cy.get('.inventory_list').should('be.visible');
-}
-
-verifyProductPresence(productName) {
-  cy.get('.inventory_item_name').contains(productName).should('exist');
 }
 
 verifyProductCount(expectedCount) {

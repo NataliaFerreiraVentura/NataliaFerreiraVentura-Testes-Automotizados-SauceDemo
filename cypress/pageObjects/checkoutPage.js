@@ -1,5 +1,4 @@
-import { FIRST_NAME, LAST_NAME, POSTAL_CODE } from '../support/constants'
-
+import { generateRandomName, generateRandomSurname, generateRandomZipCode } from '../support/dataGerators'
 class CheckoutPage {
 
   // #region Navegação
@@ -11,9 +10,13 @@ class CheckoutPage {
 
   // #region Preenchimento de Informações
     fillPaymentInformation() {
-      cy.get('input#first-name').type(FIRST_NAME)
-      cy.get('input#last-name').type(LAST_NAME)
-      cy.get('input#postal-code').type(POSTAL_CODE)
+      const randomName = generateRandomName()
+      const randomSurname = generateRandomSurname()
+      const randomZipCode = generateRandomZipCode()
+
+      cy.get('input#first-name').type(randomName)
+      cy.get('input#last-name').type(randomSurname)
+      cy.get('input#postal-code').type(randomZipCode)
     }
   // #endregion
 
@@ -28,6 +31,7 @@ class CheckoutPage {
   // #endregion
   
   // #region Verificações
+  
     verifyPurchaseOverview() {
     cy.get('.summary_info').should('be.visible')
     cy.contains('Overview').should('be.visible')

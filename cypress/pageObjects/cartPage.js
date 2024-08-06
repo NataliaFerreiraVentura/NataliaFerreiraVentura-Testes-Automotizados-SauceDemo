@@ -5,13 +5,15 @@ class CartPage {
       cy.get('.shopping_cart_badge', { timeout: 10000 }).should('be.visible')
       .and('contain', expectedCount)
     }
+   
     verifyCartItemVisibility(productName) {
       cy.contains(productName).should('be.visible')
     }
     
-    verifyCartItemDetails(productName) {
-      cy.contains(productName)
-      .parents('.cart_item').find('.item_pricebar').should('be.visible')
+    verifyCartItemDetails() {
+    
+      cy.get('.inventory_item_price')
+      .should('be.visible');
     }
     
     verifyItemNotInCart(productName) {
