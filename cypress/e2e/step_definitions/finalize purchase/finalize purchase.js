@@ -58,7 +58,7 @@ import {PRODUTO1,PRODUTO2} from '../../../support/constants'
     })
     
     Then('a compra deve ser finalizada com sucesso', () => {
-    CheckoutPage.clickFinish()
+        CheckoutPage.clickFinish()
     })
     
     Then('uma mensagem de sucesso deve ser exibida', () => {
