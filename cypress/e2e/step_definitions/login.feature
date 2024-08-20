@@ -1,12 +1,13 @@
 Feature: Login
+
   Background:
-  Given que eu navego para a página de login
+  Given que esteja na  página de login
   Scenario: Login com sucesso
-    When insiro um usuário e uma senha válidos 
-    Then o formulário de login é submetido
-    Then devo ser redirecionado para a página inicial
+    When o usuario  preenche o formulario de  "login"
+    And clica no botão Login
+    Then será redirecionado para a página inicial
 
   Scenario: Login com dados inválidos
-    When insiro credenciais inválidas 
-    Then o formulário de login é submetido
-    Then uma mensagem de erro "Epic sadface: Username and password do not match any user in this service" deve ser exibida
+    When o usuario  preenche o formulario de "login" com usuario e senha inválidos
+    And clica no botão Login
+    Then uma mensagem de erro "Epic sadface: Username and password do not match any user in this service" será exibida

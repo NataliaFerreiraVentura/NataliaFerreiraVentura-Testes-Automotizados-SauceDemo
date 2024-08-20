@@ -28,14 +28,14 @@ class CartPage {
     verifyItemInCart() {
       cy.get('.cart_list').should('be.visible')
     }
-    // #endregion
+  // #endregion
 
-    //# Ações no Carrinho
+  //# Ações no Carrinho
     removeItemFromCart(productName) {
       cy.contains(productName).parents('.cart_item')
       .find('.btn_secondary').contains('REMOVE').click()
     }
-    // #endregion
+  // #endregion
 }
 
 export default new CartPage()
